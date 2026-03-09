@@ -1,10 +1,11 @@
-# lvyou-sms (Modular Transition Edition)
+# lvyou-sms
 
-This repository is now in **modular transition**:
-- `install.sh` is the new unified entrypoint.
-- Production deployment currently uses the legacy script through wrapper commands.
+绿邮内网群控（模块化过渡版）。
 
-## Quick Start (One-click)
+- ✅ 当前生产可用：`install-legacy`
+- 🔧 模块化入口：`install`（逐步迁移中）
+
+## 一键安装（推荐）
 
 ```bash
 git clone https://github.com/lovexme/lvyou-sms.git
@@ -13,7 +14,15 @@ chmod +x install.sh
 sudo ./install.sh install-legacy
 ```
 
-## Daily Ops
+## 直接在线安装（无需先 clone）
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/lovexme/lvyou-sms/main/install.sh -o /tmp/lvyou-install.sh && \
+chmod +x /tmp/lvyou-install.sh && \
+sudo /tmp/lvyou-install.sh install-legacy
+```
+
+## 常用运维命令
 
 ```bash
 sudo ./install.sh status
@@ -24,14 +33,13 @@ sudo ./install.sh restore /path/to/backup.tar.gz
 sudo ./install.sh uninstall
 ```
 
-## Project Layout
+## 项目结构
 
 ```text
 .
-├── install.sh                    # unified entrypoint
-├── scripts/legacy-install.sh     # full legacy installer (current production path)
-├── lib/
-│   └── common.sh
+├── install.sh                    # 统一入口
+├── scripts/legacy-install.sh     # 生产可用完整安装脚本
+├── lib/                          # 公共函数
 ├── templates/
 │   ├── backend/main.py
 │   ├── frontend/src/App.vue
@@ -39,13 +47,13 @@ sudo ./install.sh uninstall
 └── .github/workflows/ci.yml
 ```
 
-## Migration Plan
+## 版本策略
 
-1. Keep production stable through `install-legacy`.
-2. Move features from legacy script into `lib/*.sh` + `templates/*` in batches.
-3. Switch `install` to full modular installer after parity checks.
+- `install-legacy`：功能完整、优先稳定
+- `install`：模块化重构入口（与 legacy 逐步对齐）
 
-## Security Notes
+## 安全建议
 
-- Never commit real tokens/passwords.
-- Rotate any token that was exposed in chat logs.
+- 首次安装务必修改默认口令
+- 不要把任何 token/密钥提交到仓库
+- 建议仅在内网环境开放服务
