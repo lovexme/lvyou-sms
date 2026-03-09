@@ -2,7 +2,7 @@
 
 绿邮内网群控（模块化过渡版）。
 
-- ✅ 当前生产可用：`install-legacy`
+- ✅ 当前生产可用：`install`
 - 🔧 模块化入口：`install`（逐步迁移中）
 
 ## 一键安装（推荐）
@@ -11,7 +11,7 @@
 git clone https://github.com/lovexme/lvyou-sms.git
 cd lvyou-sms
 chmod +x install.sh
-sudo ./install.sh install-legacy
+sudo ./install.sh install
 ```
 
 ## 直接在线安装（无需先 clone）
@@ -49,7 +49,7 @@ sudo ./install.sh uninstall
 
 ## 版本策略
 
-- `install-legacy`：功能完整、优先稳定
+- `install`：功能完整、优先稳定
 - `install`：模块化重构入口（与 legacy 逐步对齐）
 
 ## 安全建议

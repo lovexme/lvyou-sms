@@ -9,8 +9,9 @@ usage() {
 Usage: sudo ./install.sh <command>
 
 Commands:
-  install            Run modular installer (in progress)
-  install-legacy     Run legacy one-click installer (fully available)
+  install            Run stable production installer (recommended)
+  install-legacy     Run stable legacy installer (same as install)
+  install-modular    Run experimental modular installer scaffold
   status             Service status (legacy)
   restart            Restart services (legacy)
   logs [n]           Show logs (legacy)
@@ -22,7 +23,7 @@ Commands:
   help               Show this help
 
 Recommended now:
-  sudo ./install.sh install-legacy
+  sudo ./install.sh install
 EOF
 }
 
@@ -41,8 +42,9 @@ modular_install() {
 
 CMD="${1:-help}"; shift || true
 case "$CMD" in
-  install) modular_install ;;
+  install) legacy install "$@" ;;
   install-legacy) legacy install "$@" ;;
+  install-modular) modular_install ;;
   status) legacy status "$@" ;;
   restart) legacy restart "$@" ;;
   logs) legacy logs "$@" ;;
