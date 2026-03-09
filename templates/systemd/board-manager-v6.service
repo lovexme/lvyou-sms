@@ -1,0 +1,12 @@
+[Unit]
+Description=Board LAN Hub (IPv6)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory={{APPDIR}}
+ExecStart={{PYTHON}} -m uvicorn app.main:app --host :: --port {{APIPORT}}
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
