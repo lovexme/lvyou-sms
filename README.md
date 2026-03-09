@@ -1,40 +1,51 @@
-# lvyou (模块化版)
+# lvyou-sms (Modular Transition Edition)
 
-一个用于部署 Board/LAN 管理面板的模块化脚本工程（保留原有功能，便于维护与协作）。
+This repository is now in **modular transition**:
+- `install.sh` is the new unified entrypoint.
+- Production deployment currently uses the legacy script through wrapper commands.
 
-## 特性
-- 模块化目录（`install.sh + lib + templates`）
-- 可扩展命令入口（install/status/restart/backup/restore/uninstall）
-- GitHub CI（shell + 前端构建）
+## Quick Start (One-click)
 
-## 快速开始
 ```bash
-git clone <your-repo-url>
-cd lvyou-github-starter
+git clone https://github.com/lovexme/lvyou-sms.git
+cd lvyou-sms
 chmod +x install.sh
-sudo ./install.sh install
+sudo ./install.sh install-legacy
 ```
 
-## 目录结构
+## Daily Ops
+
+```bash
+sudo ./install.sh status
+sudo ./install.sh restart
+sudo ./install.sh logs 100
+sudo ./install.sh backup
+sudo ./install.sh restore /path/to/backup.tar.gz
+sudo ./install.sh uninstall
+```
+
+## Project Layout
+
 ```text
 .
-├── install.sh
+├── install.sh                    # unified entrypoint
+├── scripts/legacy-install.sh     # full legacy installer (current production path)
 ├── lib/
 │   └── common.sh
 ├── templates/
 │   ├── backend/main.py
 │   ├── frontend/src/App.vue
-│   └── systemd/
-│       ├── board-manager-v4.service
-│       └── board-manager-v6.service
-├── .github/workflows/ci.yml
-├── .gitignore
-├── LICENSE
-├── CHANGELOG.md
-└── CONTRIBUTING.md
+│   └── systemd/*.service
+└── .github/workflows/ci.yml
 ```
 
-## 安全提示
-- 发布前移除所有真实密钥/密码
-- 使用 `config/.env.example` 提供示例配置
-- 生产环境首次安装务必修改默认密码
+## Migration Plan
+
+1. Keep production stable through `install-legacy`.
+2. Move features from legacy script into `lib/*.sh` + `templates/*` in batches.
+3. Switch `install` to full modular installer after parity checks.
+
+## Security Notes
+
+- Never commit real tokens/passwords.
+- Rotate any token that was exposed in chat logs.
