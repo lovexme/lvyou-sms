@@ -3,7 +3,7 @@
 绿邮内网群控（模块化过渡版）。
 
 - ✅ 当前生产可用：`install`
-- 🔧 模块化入口：`install`（逐步迁移中）
+- 🔧 模块化入口：`install-modular`（逐步迁移中）
 
 ## 一键安装（推荐）
 
@@ -19,7 +19,7 @@ sudo ./install.sh install
 ```bash
 curl -fsSL https://raw.githubusercontent.com/lovexme/lvyou-sms/main/install.sh -o /tmp/lvyou-install.sh && \
 chmod +x /tmp/lvyou-install.sh && \
-sudo /tmp/lvyou-install.sh install-legacy
+sudo /tmp/lvyou-install.sh install
 ```
 
 ## 常用运维命令
@@ -49,8 +49,8 @@ sudo ./install.sh uninstall
 
 ## 版本策略
 
-- `install`：功能完整、优先稳定
-- `install`：模块化重构入口（与 legacy 逐步对齐）
+- `install`：功能完整、优先稳定（推荐）
+- `install-modular`：模块化重构入口（与 legacy 逐步对齐）
 
 ## 安全建议
 
