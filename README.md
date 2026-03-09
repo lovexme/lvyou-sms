@@ -3,7 +3,7 @@
 绿邮内网群控（模块化过渡版）。
 
 - ✅ 当前生产可用：`install`
-- 🔧 模块化入口：`install-modular`（逐步迁移中）
+- 🔧 模块化入口：`install-modular`（已可用）
 
 ## 一键安装（推荐）
 
@@ -39,6 +39,7 @@ sudo ./install.sh uninstall
 .
 ├── install.sh                    # 统一入口
 ├── scripts/legacy-install.sh     # 生产可用完整安装脚本
+├── scripts/modular-install.sh    # 模块化入口脚本（当前可用）
 ├── lib/                          # 公共函数
 ├── templates/
 │   ├── backend/main.py
@@ -50,7 +51,7 @@ sudo ./install.sh uninstall
 ## 版本策略
 
 - `install`：功能完整、优先稳定（推荐）
-- `install-modular`：模块化重构入口（与 legacy 逐步对齐）
+- `install-modular`：模块化入口（当前使用稳定引擎，后续平滑迁移）
 
 ## 安全建议
 

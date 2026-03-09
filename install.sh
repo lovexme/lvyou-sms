@@ -11,7 +11,7 @@ Usage: sudo ./install.sh <command>
 Commands:
   install            Run stable production installer (recommended)
   install-legacy     Run stable legacy installer (same as install)
-  install-modular    Run experimental modular installer scaffold
+  install-modular    Run modular installer (production-ready entry)
   status             Service status (legacy)
   restart            Restart services (legacy)
   logs [n]           Show logs (legacy)
@@ -35,16 +35,14 @@ legacy() {
 
 modular_install() {
   need_root
-  log "[modular] Scaffold mode: modular full installer is being migrated."
-  log "[modular] Use legacy path now for production deploy:"
-  log "          sudo ./install.sh install-legacy"
+  bash "$ROOT_DIR/scripts/modular-install.sh" install "$@"
 }
 
 CMD="${1:-help}"; shift || true
 case "$CMD" in
   install) legacy install "$@" ;;
   install-legacy) legacy install "$@" ;;
-  install-modular) modular_install ;;
+  install-modular) modular_install "$@" ;;
   status) legacy status "$@" ;;
   restart) legacy restart "$@" ;;
   logs) legacy logs "$@" ;;

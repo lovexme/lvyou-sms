@@ -13,3 +13,10 @@
 - `install` switched to stable production path (legacy engine)
 - New experimental command: `install-modular`
 - Goal: keep one recommended command for users while modular migration continues
+
+
+## Modular Entry Ready
+
+- Added `scripts/modular-install.sh`
+- `install-modular` now executes a real install flow (production-usable)
+- Current strategy: stable engine + modular migration in-place
